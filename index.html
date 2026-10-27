@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misión Jerarquía · Matemáticas I</title>
+<style>
+:root{--bg:#0b1330;--panel:#18234c;--blue:#61c6ff;--gold:#ffdf70;--green:#79efbf;--white:#f6f8ff;--muted:#b7c5e9;--red:#ff8d99}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 10%,#233b78 0%,transparent 40%),linear-gradient(145deg,#080e25,#13204a);color:var(--white);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}header,main,footer{max-width:960px;margin:auto;padding:16px}header{padding-top:26px}h1{font-size:clamp(1.75rem,5vw,3rem);margin:.1em 0}h2{margin:0 0 10px}.eyebrow{color:var(--gold);font-size:.8rem;letter-spacing:.15em;font-weight:800}.subtitle{color:var(--muted);margin:0}.panel{background:rgba(23,36,77,.95);border:1px solid #3b528e;border-radius:20px;padding:24px;box-shadow:0 12px 36px #0004}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.stat{background:#111b3d;border-radius:14px;padding:12px;text-align:center}.stat strong{font-size:1.5rem;display:block;color:var(--gold)}.stat span{font-size:.8rem;color:var(--muted)}.meter{height:12px;border-radius:99px;background:#0c1432;overflow:hidden;margin:13px 0 22px}.fill{background:linear-gradient(90deg,#61c6ff,#79efbf);height:100%;width:0%;transition:width .3s}.levels{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#263769;border:1px solid #52669c;border-radius:50px;padding:5px 12px;font-size:.82rem;color:#d2dfff}.chip.active{background:#154b69;color:#aaf5ff;border-color:#50c6f5}.expression{font-size:clamp(1.65rem,5.5vw,3rem);font-weight:800;text-align:center;letter-spacing:.03em;padding:22px 8px;color:white;overflow-wrap:anywhere}.question{margin-top:8px;font-size:1.1rem;text-align:center}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.answer{min-height:65px;font-size:1.5rem;font-weight:800}.btn,.answer{border-radius:14px;border:2px solid #5582c0;background:#253c77;color:white;padding:12px 16px;cursor:pointer;transition:.15s}.btn:hover,.answer:hover{background:#3161a2;transform:translateY(-1px)}.btn:focus-visible,.answer:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.btn.primary{background:#096992;border-color:#55d7ff;font-weight:700}.btn.secondary{background:#263458}.answer:disabled,.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.answer.correct{background:#125a47;border-color:var(--green)}.answer.wrong{background:#733041;border-color:var(--red)}.feedback{margin-top:16px;border-radius:14px;padding:14px;background:#0d1b3f;border:1px solid #3b5d96}.feedback.ok{border-color:var(--green)}.feedback.bad{border-color:var(--red)}.feedback strong{display:block;margin-bottom:4px}.steps{padding-left:22px;margin:10px 0}.steps li{margin:7px 0}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}.rule{background:#101d43;border-left:4px solid var(--gold);padding:12px 15px;border-radius:10px;margin:15px 0}.muted{color:var(--muted)}.hidden{display:none!important}label{display:block;margin:12px 0 5px}input{width:100%;max-width:410px;background:#101b3e;color:white;border:2px solid #5b7cb8;border-radius:10px;padding:12px;font-size:1rem}.badge{display:inline-block;border-radius:99px;background:#25416b;padding:5px 12px;color:#fff1ac}.result{font-size:1.35rem;color:var(--gold);font-weight:800}.center{text-align:center}footer{color:#b1bee2;text-align:center;font-size:.85rem;padding-bottom:35px}@media(max-width:580px){.panel{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}.answers{gap:8px}.expression{padding:16px 0}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">ESCUELA WEBSTER · MATEMÁTICAS I</div><h1>🚀 Misión Jerarquía</h1><p class="subtitle">Domina el orden de las operaciones y conviértete en experto.</p></header>
+<main>
+<section id="welcome" class="panel"><h2>🎮 ¡Bienvenido a la misión!</h2><p>Resolverás <strong>24 desafíos</strong> distribuidos en cuatro niveles. Cada respuesta correcta te dará puntos. La dificultad aumentará conforme avances.</p><div class="rule"><strong>Regla de oro:</strong> primero las <strong>multiplicaciones y divisiones</strong>, de izquierda a derecha. Después, las <strong>sumas y restas</strong>, también de izquierda a derecha. Si hay paréntesis, se resuelven primero (en este juego no aparecen).</div><p><strong>Ejemplo:</strong> 18 − 12 ÷ 3 × 2 = 18 − 4 × 2 = 18 − 8 = <strong>10</strong>.</p><label for="student">Nombre del estudiante (opcional)</label><input id="student" maxlength="50" placeholder="Escribe tu nombre"><div class="actions"><button class="btn primary" id="start">¡Comenzar aventura!</button></div><p class="muted center">Sin cronómetro y sin penalizaciones por equivocarte: aprender es lo importante.</p></section>
+<section id="game" class="panel hidden" aria-live="polite"><div class="levels"><span class="chip" id="c0">Nivel 1 · Aprendiz</span><span class="chip" id="c1">Nivel 2 · Explorador</span><span class="chip" id="c2">Nivel 3 · Experto</span><span class="chip" id="c3">Nivel 4 · Maestro</span></div><div class="stats"><div class="stat"><strong id="points">0</strong><span>Puntos</span></div><div class="stat"><strong id="questionCount">1/24</strong><span>Desafío</span></div><div class="stat"><strong id="streak">0</strong><span>Racha</span></div><div class="stat"><strong id="hits">0</strong><span>Aciertos a la primera</span></div></div><div class="meter" aria-label="Progreso"><div id="progress" class="fill"></div></div><div class="center"><span class="badge" id="levelName">Nivel 1</span><div class="question">¿Cuánto vale la siguiente expresión?</div><div class="expression" id="expression"></div><p class="muted" id="reward"></p></div><div class="answers" id="answers"></div><div id="feedback" class="feedback hidden" aria-live="polite"></div><div class="actions"><button id="hint" class="btn secondary">💡 Ver una pista</button><button id="next" class="btn primary hidden">Siguiente desafío →</button></div></section>
+<section id="done" class="panel hidden center"><h2>🏆 ¡Misión completada!</h2><p id="congrats"></p><div class="result" id="finalScore"></div><p id="summary"></p><p id="medal"></p><div class="actions"><button class="btn primary" id="restart">🔁 Volver a jugar</button><button class="btn secondary" id="print">🖨️ Imprimir resultado</button></div><p class="muted">Puedes volver a intentarlo: los problemas se mezclarán en cada partida.</p></section>
+</main><footer>Hecho para aprender, practicar y disfrutar de las matemáticas · Funciona sin conexión.</footer>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const LEVELS=[{title:'Aprendiz',award:10},{title:'Explorador',award:20},{title:'Experto',award:30},{title:'Maestro',award:40}];
+const SYMBOL={'+':'+','-':'−','*':'×','/':'÷'};
+let questions=[],index=0,score=0,streak=0,best=0,hits=0,wrong=false,solved=false,hintUsed=false;
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[rand(0,a.length-1)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){let j=rand(0,i);[a[i],a[j]]=[a[j],a[i]];}return a};
+function evalOps(nums,ops){
+ let n=[...nums],o=[...ops],steps=[];
+ // Multiplies and divides from left to right before addition/subtraction.
+ for(let i=0;i<o.length;){if(o[i]==='*'||o[i]==='/'){
+  const a=n[i],b=n[i+1],v=o[i]==='*'?a*b:a/b;
+  if(!Number.isInteger(v)||!Number.isFinite(v))return null;
+  steps.push(`${a} ${SYMBOL[o[i]]} ${b} = ${v}`);n.splice(i,2,v);o.splice(i,1);
+ }else i++}
+ while(o.length){let a=n[0],b=n[1],v=o[0]==='+'?a+b:a-b;
+ steps.push(`${a} ${SYMBOL[o[0]]} ${b} = ${v}`);n.splice(0,2,v);o.shift();}
+ return {value:n[0],steps};}
+function make(level){
+ for(let tries=0;tries<1000;tries++){
+  let ops,nums;
+  if(level===0){
+   ops=shuffle(['+',pick(['*','/'])]);
+   nums=[rand(2,16),rand(2,9),rand(2,9)];
+  } else if(level===1){
+   ops=shuffle(['+','-',pick(['*','/'])]);
+   nums=Array.from({length:4},()=>rand(2,15));
+  }else if(level===2){
+   ops=shuffle(['+','-',pick(['*','/']),pick(['*','/'])]);
+   nums=Array.from({length:5},()=>rand(2,18));
+  }else{
+   ops=shuffle(['+','-',pick(['*','/']),pick(['*','/']),pick(['*','/'])]);
+   nums=Array.from({length:6},()=>rand(2,20));
+  }
+  // Engineer divisions so every result remains an integer with sequential ×/÷.
+  // Use brute force but reject nonintegral results.
+  const ev=evalOps(nums,ops);if(!ev)continue;
+  if(ev.value < -55 || ev.value > 180)continue;
+  if(level<2 && ev.value<0)continue;
+  if(level===0 && ev.value>90)continue;
+  if(level>=2 && !ops.includes('/'))continue;
+  if(level===3 && !ops.includes('*'))continue;
+  const expr=nums.map((n,i)=>i===0?String(n):`${SYMBOL[ops[i-1]]} ${n}`).join(' ');
+  return {expr,ops,nums,answer:ev.value,steps:ev.steps,level};
+ }
+ // Guaranteed fallback preserving the four difficulty tiers.
+ const fallback=[[[8,3,4],['+','*']],[[24,3,5,2],['/','+','*']],[[48,4,3,8,2],['/','*','-','+']],[[72,3,2,5,4,6],['/','*','-','+','*']]][level];
+ const [nums,ops]=fallback;let ev=evalOps(nums,ops);
+ return {expr:nums.map((n,i)=>i===0?String(n):`${SYMBOL[ops[i-1]]} ${n}`).join(' '),nums,ops,answer:ev.value,steps:ev.steps,level};
+}
+function options(correct,level){let s=new Set([correct]),tries=0;while(s.size<4&&tries++<100){let shift=pick([-1,1])*rand(1,level===0?12:level===1?20:40);let v=correct+shift;if(level<=1&&v<0)continue;s.add(v)}while(s.size<4)s.add(correct+s.size+1);return shuffle([...s]);}
+function start(){questions=[];const seen=new Set();for(let l=0;l<4;l++)for(let j=0;j<6;j++){let q,tryCount=0;do{q=make(l)}while(seen.has(q.expr)&&++tryCount<100);seen.add(q.expr);questions.push(q)}index=0;score=0;streak=0;best=0;hits=0;$('welcome').classList.add('hidden');$('done').classList.add('hidden');$('game').classList.remove('hidden');show()}
+function show(){wrong=false;solved=false;hintUsed=false;let q=questions[index],level=q.level;
+ $('points').textContent=score;$('questionCount').textContent=`${index+1}/24`;$('streak').textContent=streak;$('hits').textContent=hits;$('progress').style.width=`${index/24*100}%`;$('levelName').textContent=`Nivel ${level+1} · ${LEVELS[level].title}`;
+ for(let j=0;j<4;j++)$('c'+j).classList.toggle('active',j===level);
+ $('expression').textContent=q.expr;$('reward').textContent=`Respuesta correcta al primer intento: +${LEVELS[level].award} puntos`;
+ $('answers').replaceChildren();for(const v of options(q.answer,level)){
+  const b=document.createElement('button');b.className='answer';b.textContent=v;b.type='button';b.addEventListener('click',()=>choose(v,b));$('answers').appendChild(b);
+ }
+ $('feedback').className='feedback hidden';$('feedback').replaceChildren();$('next').classList.add('hidden');$('hint').disabled=false;$('hint').classList.remove('hidden');}
+function feedback(title,paragraph,steps,ok){const f=$('feedback');f.className='feedback '+(ok?'ok':'bad');f.replaceChildren();let strong=document.createElement('strong');strong.textContent=title;f.append(strong);let p=document.createElement('p');p.textContent=paragraph;f.append(p);if(steps){let ol=document.createElement('ol');ol.className='steps';for(const s of steps){let li=document.createElement('li');li.textContent=s;ol.append(li)}f.append(ol)}}
+function choose(v,button){if(solved)return;let q=questions[index];if(v===q.answer){solved=true;button.classList.add('correct');[...$('answers').children].forEach(b=>b.disabled=true);const gained=wrong||hintUsed?Math.floor(LEVELS[q.level].award/2):LEVELS[q.level].award;score+=gained;if(!wrong&&!hintUsed){hits++;streak++;best=Math.max(best,streak)}else streak=0;$('points').textContent=score;$('hits').textContent=hits;$('streak').textContent=streak;feedback('✅ ¡Correcto! Ganaste '+gained+' puntos.','Este es el orden correcto de resolución:',q.steps,true);$('next').textContent=index===23?'Ver mis resultados 🏆':'Siguiente desafío →';$('next').classList.remove('hidden');$('hint').classList.add('hidden')}else{wrong=true;streak=0;$('streak').textContent=0;button.classList.add('wrong');button.disabled=true;feedback('🔍 Inténtalo otra vez.','Primero resuelve las multiplicaciones y divisiones de izquierda a derecha. Después suma y resta, también de izquierda a derecha.',null,false)}}
+function finish(){let name=$('student').value.trim();$('game').classList.add('hidden');$('done').classList.remove('hidden');$('congrats').textContent=`${name?name+', ':''}terminaste los 24 retos de jerarquía de operaciones.`;$('finalScore').textContent=`${score} de 600 puntos posibles`;$('summary').textContent=`Aciertos sin pistas ni errores: ${hits}/24 · Mejor racha: ${best}`;$('medal').textContent=score>=520?'🥇 Medalla de oro: ¡dominas la jerarquía!':score>=390?'🥈 Medalla de plata: ¡muy buen trabajo!':score>=240?'🥉 Medalla de bronce: ¡vas por buen camino!':'🌱 Medalla de perseverancia: ¡sigue practicando!';$('progress').style.width='100%'}
+$('start').addEventListener('click',start);$('restart').addEventListener('click',start);$('print').addEventListener('click',()=>window.print());$('next').addEventListener('click',()=>{index++;index>=24?finish():show()});$('hint').addEventListener('click',()=>{if(solved)return;hintUsed=true;let q=questions[index],first=q.ops.findIndex(o=>o==='*'||o==='/');let msg=first===-1?'Resuelve sumas y restas desde la izquierda.':`Empieza por ${q.nums[first]} ${SYMBOL[q.ops[first]]} ${q.nums[first+1]}.`;feedback('💡 Pista',msg+' Después continúa con las demás multiplicaciones y divisiones en orden; al final suma y resta.',null,true);$('hint').disabled=true});
+})();
+</script>
+</body></html>
